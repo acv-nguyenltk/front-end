@@ -53,9 +53,11 @@ $(function() {
     for (let i = 0; i < users.length; i++) {
       if(users[i].email === email){
         console.log(users[i]);
-        users.splice(i, 1);
+        users.splice(i,1);
         break;
       };
     };
+    localStorage.setItem('users', JSON.stringify(users));
+    window.location.replace("signin.html");
   });
 });
