@@ -1,3 +1,4 @@
+// get param from url
 let getUrlParameter = function getUrlParameter(sParam) {
     var sPageURL = decodeURIComponent(window.location.search.substring(1)),
         sURLVariables = sPageURL.split('&'),
@@ -30,7 +31,7 @@ $(function() {
         users[i] = {
           id : users[i].id,
           username: $("#username").val(),
-          email: $("#email").val(),
+          email: users[i].email,
           password: $("#password").val(),
           firstname: null,
           lastname: null,
@@ -50,14 +51,17 @@ $(function() {
   });
 
   $("#delete").click(function(){
-    for (let i = 0; i < users.length; i++) {
-      if(users[i].email === email){
-        console.log(users[i]);
-        users.splice(i,1);
-        break;
+    let result = confirm('Are you sure?');
+    if (result){
+      for (let i = 0; i < users.length; i++) {
+        if(users[i].email === email){
+          console.log(users[i]);
+          users.splice(i,1);
+          break;
+        };
       };
-    };
-    localStorage.setItem('users', JSON.stringify(users));
-    window.location.replace("signin.html");
+      localStorage.setItem('users', JSON.stringify(users));
+      window.location.replace("signin.html");
+    }
   });
 });

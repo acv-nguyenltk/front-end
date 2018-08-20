@@ -1,4 +1,29 @@
+function idGenerator() {
+		 this.length = 8;
+		 this.timestamp = +new Date;
+		 let _getRandomInt = function( min, max ) {
+			return Math.floor( Math.random() * ( max - min + 1 ) ) + min;
+		 }
+
+		 this.generate = function() {
+			 let ts = this.timestamp.toString();
+			 let parts = ts.split( "" ).reverse();
+			 let id = "";
+
+			 for( let i = 0; i < this.length; ++i ) {
+				let index = _getRandomInt( 0, parts.length - 1 );
+				id += parts[index];
+			 }
+
+			 return id;
+		 }
+
+
+	 };
 $(function() {
+  $("#cancel").click(function(){
+    window.location.replace("signin.html");
+  });
   $("#myFrom").validate ({
     rules: {
       email: {
@@ -19,8 +44,9 @@ $(function() {
     },
     submitHandler: function(form) {
 			let users = JSON.parse(localStorage.getItem("users")) ? JSON.parse(localStorage.getItem("users")) : [];
+      let getId = new idGenerator();
       let user = {
-        id: users.length,
+        id: getId.generate(),
         username: $("#username").val(),
         email: $("#email").val(),
         password: $("#password").val(),
@@ -35,5 +61,5 @@ $(function() {
       localStorage.setItem('users', JSON.stringify(users));
       window.location.replace("signin.html")
     }
-  })
-})
+  });
+});

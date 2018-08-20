@@ -1,6 +1,6 @@
 $(function() {
-  $("#forget").click(function () {
-       window.location.replace("forget.html");
+  $("#signup").click(function () {
+       window.location.replace("index.html");
    });
   $("#myFrom").validate ({
     rules: {
