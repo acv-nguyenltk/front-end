@@ -17,9 +17,30 @@ function idGenerator() {
 
 			 return id;
 		 }
-
-
 	 };
+function getImage(){
+  bannerImage = $('#avatar').get(0).files[0];
+  imageData = getBase64(bannerImage);
+};
+var imageconvert = '';
+function getBase64(file) {
+  var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      imageconvert = reader.result;
+      $('#preview').attr('src', reader.result);
+    };
+    reader.onerror = function (error) {
+      console.log('Error: ', error);
+    };
+  };
+$(document).ready(function(){
+  $( "#birthday" ).datepicker({
+     maxDate: '0',
+     dateFormat: 'dd/mm/yy',
+     }).on('change', function() {
+    });
+});
 $(function() {
   $("#cancel").click(function(){
     window.location.replace("signin.html");
@@ -40,6 +61,12 @@ $(function() {
       passwordAgain: {
         minlength: 8,
         equalTo: "#password"
+      },
+      birthday: {
+        date: true
+      },
+      tele: {
+        digits: true
       }
     },
     submitHandler: function(form) {
@@ -47,15 +74,16 @@ $(function() {
       let getId = new idGenerator();
       let user = {
         id: getId.generate(),
+        birthday: $("#birthday").val(),
         username: $("#username").val(),
         email: $("#email").val(),
         password: $("#password").val(),
-        firstname: null,
-        lastname: null,
-        gender: null,
-        avatar: null,
+        firstname: $("#firstname").val(),
+        lastname: $("#lastname").val(),
+        gender: $("#gender").val(),
+        avatar: imageconvert,
         address: '',
-        phone: null
+        phone: $("#tele").val()
       }
       users.push(user);
       localStorage.setItem('users', JSON.stringify(users));

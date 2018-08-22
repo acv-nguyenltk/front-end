@@ -12,7 +12,22 @@ let getUrlParameter = function getUrlParameter(sParam) {
         }
     }
 };
-
+function getImage(){
+  bannerImage = $('#avatar').get(0).files[0];
+  imageData = getBase64(bannerImage);
+};
+var imageconvert = '';
+function getBase64(file) {
+  var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      imageconvert = reader.result;
+      $('#preview').attr('src', reader.result);
+    };
+    reader.onerror = function (error) {
+      console.log('Error: ', error);
+    };
+  };
 $(function() {
   let email = getUrlParameter('email');
   let users = JSON.parse(localStorage.getItem("users"));
@@ -22,6 +37,7 @@ $(function() {
       $("#password").val(users[i].password);
       $("#passwordAgain").val(users[i].password);
       $("#username").val(users[i].username);
+      $('#preview').attr('src', users[i].avatar);
     }
 };
 
@@ -36,14 +52,14 @@ $(function() {
           firstname: null,
           lastname: null,
           gender: null,
-          avatar: null,
+          avatar: imageconvert,
           address: '',
           phone: null
         };
       };
       localStorage.setItem('users', JSON.stringify(users));
-      window.location.replace("signin.html");
     }
+    window.location.replace("signin.html");
   });
 
   $("#cancel").click(function(){

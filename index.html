@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Hello friend</title>
       <link href="css/bootstrap.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="css/jquery-ui.min.css">
       <link rel="stylesheet" href="css/master.css">
   </head>
   <body>
@@ -34,6 +35,35 @@
                 <label for="passwordAgain">Confirm Password</label>
                 <input type="password" name="passwordAgain"class="form-control" id="passwordAgain" placeholder="Input Password Again" required>
               </div>
+              <div class="form-group">
+                <label for="firstname">First Name</label>
+                <input type="type" name="firstname" class="form-control" id="firstname" placeholder="Input Your First Name" required>
+              </div>
+              <div class="form-group">
+                <label for="lastname">Last Name</label>
+                <input type="type" name="lastname" class="form-control" id="lastname" placeholder="Input Your Last Name" required>
+              </div>
+              <div>
+              <label for="example-tel-input">Telephone</label>
+                <input class="form-control" type="tel" value="(+84)-0908-000-000" id="tele">
+              </div>
+              <div class="form-group">
+                <label for="birthday">Birthday</label>
+                <input type="text" name="birthday" class="form-control" id="birthday" required>
+              </div>
+              <div class="form-group">
+                <label for="gender">Gender</label>
+                  <select class="form-control" id="gender">
+                    <option>Other</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputFile">Your avatar</label>
+                <input type="file" class="form-control-file" id="avatar" onchange="getImage()">
+                <img id="preview" width="50%" height="50%">
+              </div>
               <div class="text-center">
                 <button type="submit" class="btn btn-primary" id="submit">Sign up</button>
                 <button type="button" class="btn btn-danger" id="cancel">Cancel</button>
@@ -42,9 +72,10 @@
         </div>
       </div>
     </div>
-    <script src="js/lib/jquery.min.js"></script>
+    <script src="js/lib/jquery.js"></script>
     <script src="js/lib/jquery.validate.min.js"></script>
     <script src="js/lib/bootstrap.min.js"></script>
+    <script src="js/lib/jquery-ui.min.js"></script>
     <script src="js/registration.js"></script>
   </body>
 </html>

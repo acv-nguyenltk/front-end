@@ -34,6 +34,11 @@
                 <label for="passwordAgain">Confirm Password</label>
                 <input type="password" name="passwordAgain"class="form-control" id="passwordAgain" placeholder="Input Password Again" required>
               </div>
+              <div class="form-group">
+                <label for="exampleInputFile">Your avatar</label>
+                <input type="file" onchange="getImage()" id="avatar" aria-describedby="fileHelp">
+                <img id="preview"  width="50%" height="50%" >
+              </div>
               <div class="text-center">
                 <button type="submit" class="btn btn-primary" id="submit">Update</button>
                 <button type="button" class="btn btn-danger" id="delete">Delete</button>
